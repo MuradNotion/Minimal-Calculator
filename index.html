@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Smart Calculator</title>
+  <title>Minimal Calculator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -144,7 +144,7 @@
       <button onclick="appendValue('0')">0</button>
       <button onclick="appendValue('.')">.</button>
       <button onclick="calculate()">=</button>
-      <button onclick="toggleDarkMode()" id="themeToggle">Dark</button>
+      <button onclick="toggleDarkMode()" id="themeToggle">D</button>
     </div>
   </div>
 
@@ -188,7 +188,7 @@
       document.getElementById('display').classList.toggle('dark');
 
       const toggleBtn = document.getElementById('themeToggle');
-      toggleBtn.textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+      toggleBtn.textContent = document.body.classList.contains('dark') ? 'L' : 'D';
     }
   </script>
 </body>
