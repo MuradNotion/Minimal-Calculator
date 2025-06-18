@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Minimal Calculator</title>
+  <title>Smart Calculator</title>
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -49,7 +50,7 @@
     .buttons button {
       width: 100%;
       aspect-ratio: 1 / 1;
-      font-size: 1.2em;
+      font-size: 1em;
       border-radius: 50%;
       border: 1px solid #000;
       background: #fff;
@@ -68,12 +69,7 @@
       color: #fff;
     }
 
-    .buttons button svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
-
+    /* Dark mode */
     body.dark {
       background: transparent;
       color: #fff;
@@ -118,6 +114,11 @@
         transform: scale(0.65);
       }
     }
+
+    .icon-btn i {
+      font-size: 1.2em;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -147,11 +148,8 @@
       <button onclick="appendValue('0')">0</button>
       <button onclick="appendValue('.')">.</button>
       <button onclick="calculate()">=</button>
-      <button onclick="toggleDarkMode()" id="themeToggle">
-        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-          <!-- Moon Icon (default) -->
-          <path d="M48.64,42.92A22,22,0,0,1,25.86,15.36a1,1,0,0,0-1.11-1.47A24,24,0,1,0,50.11,44,1,1,0,0,0,48.64,42.92Z"/>
-        </svg>
+      <button class="icon-btn" onclick="toggleDarkMode()" id="themeToggle">
+        <i class="fi-sr-moon"></i>
       </button>
     </div>
   </div>
@@ -192,20 +190,19 @@
 
     function toggleDarkMode() {
       const body = document.body;
-      const calc = document.getElementById('calculator');
+      const calculator = document.getElementById('calculator');
       const display = document.getElementById('display');
-      const icon = document.getElementById('themeIcon');
+      const toggleBtn = document.getElementById('themeToggle');
+      const icon = toggleBtn.querySelector('i');
 
       body.classList.toggle('dark');
-      calc.classList.toggle('dark');
+      calculator.classList.toggle('dark');
       display.classList.toggle('dark');
 
       if (body.classList.contains('dark')) {
-        // Sun icon
-        icon.innerHTML = '<path d="M32,20a12,12,0,1,0,12,12A12,12,0,0,0,32,20Zm0-8a2,2,0,0,1,2-2h0a2,2,0,1,1-4,0h0A2,2,0,0,1,32,12Zm0,48a2,2,0,0,1-2-2h0a2,2,0,0,1,4,0h0A2,2,0,0,1,32,60ZM12,34a2,2,0,0,1-2-2h0a2,2,0,0,1,4,0h0A2,2,0,0,1,12,34Zm48,0a2,2,0,0,1-2-2h0a2,2,0,1,1,4,0h0A2,2,0,0,1,60,34ZM19.51,19.51a2,2,0,0,1,2.83,0h0a2,2,0,0,1-2.83,2.83h0A2,2,0,0,1,19.51,19.51Zm28.98,28.98a2,2,0,0,1,2.83,0h0a2,2,0,1,1-2.83,2.83h0A2,2,0,0,1,48.49,48.49ZM19.51,48.49a2,2,0,0,1,0-2.83h0a2,2,0,1,1,2.83,2.83h0A2,2,0,0,1,19.51,48.49Zm28.98-28.98a2,2,0,0,1,0-2.83h0a2,2,0,0,1,2.83,2.83h0A2,2,0,0,1,48.49,19.51Z"/>';
+        icon.className = 'fi-sr-brightness';
       } else {
-        // Moon icon
-        icon.innerHTML = '<path d="M48.64,42.92A22,22,0,0,1,25.86,15.36a1,1,0,0,0-1.11-1.47A24,24,0,1,0,50.11,44,1,1,0,0,0,48.64,42.92Z"/>';
+        icon.className = 'fi-sr-moon';
       }
     }
   </script>
