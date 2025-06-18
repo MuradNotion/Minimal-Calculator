@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Smart Calculator</title>
+  <title>Minimal Calculator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -69,12 +69,11 @@
     }
 
     .buttons button svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       fill: currentColor;
     }
 
-    /* Dark mode */
     body.dark {
       background: transparent;
       color: #fff;
@@ -149,9 +148,9 @@
       <button onclick="appendValue('.')">.</button>
       <button onclick="calculate()">=</button>
       <button onclick="toggleDarkMode()" id="themeToggle">
-        <!-- Default: Moon icon -->
-        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <!-- Moon Icon (default) -->
+          <path d="M48.64,42.92A22,22,0,0,1,25.86,15.36a1,1,0,0,0-1.11-1.47A24,24,0,1,0,50.11,44,1,1,0,0,0,48.64,42.92Z"/>
         </svg>
       </button>
     </div>
@@ -201,13 +200,12 @@
       calc.classList.toggle('dark');
       display.classList.toggle('dark');
 
-      // Change icon SVG path
       if (body.classList.contains('dark')) {
         // Sun icon
-        icon.innerHTML = '<path d="M12 4.5a1 1 0 011 1V7a1 1 0 01-2 0V5.5a1 1 0 011-1zm0 12a1 1 0 011 1v1.5a1 1 0 01-2 0V17.5a1 1 0 011-1zm7.07-7.07a1 1 0 010 1.41l-1.06 1.06a1 1 0 11-1.41-1.41l1.06-1.06a1 1 0 011.41 0zM5.93 5.93a1 1 0 010 1.41L4.87 8.4a1 1 0 11-1.41-1.41L4.52 5.93a1 1 0 011.41 0zM18.5 11a1 1 0 011 1h1.5a1 1 0 010 2H19.5a1 1 0 01-1-1 1 1 0 011-1zm-13 0a1 1 0 011 1 1 1 0 01-1 1H4a1 1 0 010-2h1.5zm10.18 4.9a1 1 0 011.41 0l1.06 1.06a1 1 0 01-1.41 1.41l-1.06-1.06a1 1 0 010-1.41zM5.93 18.07a1 1 0 011.41 0l1.06 1.06a1 1 0 11-1.41 1.41L5.93 19.48a1 1 0 010-1.41zM12 8a4 4 0 100 8 4 4 0 000-8z"/>';
+        icon.innerHTML = '<path d="M32,20a12,12,0,1,0,12,12A12,12,0,0,0,32,20Zm0-8a2,2,0,0,1,2-2h0a2,2,0,1,1-4,0h0A2,2,0,0,1,32,12Zm0,48a2,2,0,0,1-2-2h0a2,2,0,0,1,4,0h0A2,2,0,0,1,32,60ZM12,34a2,2,0,0,1-2-2h0a2,2,0,0,1,4,0h0A2,2,0,0,1,12,34Zm48,0a2,2,0,0,1-2-2h0a2,2,0,1,1,4,0h0A2,2,0,0,1,60,34ZM19.51,19.51a2,2,0,0,1,2.83,0h0a2,2,0,0,1-2.83,2.83h0A2,2,0,0,1,19.51,19.51Zm28.98,28.98a2,2,0,0,1,2.83,0h0a2,2,0,1,1-2.83,2.83h0A2,2,0,0,1,48.49,48.49ZM19.51,48.49a2,2,0,0,1,0-2.83h0a2,2,0,1,1,2.83,2.83h0A2,2,0,0,1,19.51,48.49Zm28.98-28.98a2,2,0,0,1,0-2.83h0a2,2,0,0,1,2.83,2.83h0A2,2,0,0,1,48.49,19.51Z"/>';
       } else {
         // Moon icon
-        icon.innerHTML = '<path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>';
+        icon.innerHTML = '<path d="M48.64,42.92A22,22,0,0,1,25.86,15.36a1,1,0,0,0-1.11-1.47A24,24,0,1,0,50.11,44,1,1,0,0,0,48.64,42.92Z"/>';
       }
     }
   </script>
