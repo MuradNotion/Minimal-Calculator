@@ -46,13 +46,13 @@
       margin-bottom: 15px;
       border-radius: 8px;
       background: #f2f2f2;
-      min-width: 280px;
+      min-width: 260px;
       user-select: none;
     }
 
     .buttons {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
 
@@ -76,6 +76,11 @@
     .buttons button:hover {
       background: #000;
       color: #fff;
+    }
+
+    .row-span {
+      grid-column: span 4;
+      border-radius: 12px;
     }
 
     /* Dark mode */
@@ -109,19 +114,19 @@
     /* Responsive scaling */
     @media (max-width: 600px) {
       .scale-wrapper {
-        transform: scale(0.8);
+        transform: scale(0.85);
       }
     }
 
     @media (max-width: 450px) {
       .scale-wrapper {
-        transform: scale(0.7);
+        transform: scale(0.75);
       }
     }
 
     @media (max-width: 350px) {
       .scale-wrapper {
-        transform: scale(0.6);
+        transform: scale(0.65);
       }
     }
   </style>
@@ -135,27 +140,25 @@
         <button onclick="backspace()">⌫</button>
         <button onclick="appendValue('%')">%</button>
         <button onclick="appendValue('/')">÷</button>
-        <button onclick="calculate()">=</button>
 
         <button onclick="appendValue('7')">7</button>
         <button onclick="appendValue('8')">8</button>
         <button onclick="appendValue('9')">9</button>
         <button onclick="appendValue('*')">×</button>
-        <button onclick="appendValue('1')">1</button>
 
         <button onclick="appendValue('4')">4</button>
         <button onclick="appendValue('5')">5</button>
         <button onclick="appendValue('6')">6</button>
         <button onclick="appendValue('-')">−</button>
-        <button onclick="appendValue('2')">2</button>
 
         <button onclick="appendValue('1')">1</button>
         <button onclick="appendValue('2')">2</button>
         <button onclick="appendValue('3')">3</button>
         <button onclick="appendValue('+')">+</button>
-        <button onclick="appendValue('.')">.</button>
 
         <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="calculate()">=</button>
         <button onclick="toggleDarkMode()" id="themeToggle">Dark</button>
       </div>
     </div>
