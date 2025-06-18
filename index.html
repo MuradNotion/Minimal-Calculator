@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Minimal Calculator</title>
+  <title>Smart Calculator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -66,6 +66,12 @@
     .buttons button:hover {
       background: #000;
       color: #fff;
+    }
+
+    .buttons button svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
 
     /* Dark mode */
@@ -142,7 +148,12 @@
       <button onclick="appendValue('0')">0</button>
       <button onclick="appendValue('.')">.</button>
       <button onclick="calculate()">=</button>
-      <button onclick="toggleDarkMode()" id="themeToggle">🌙</button>
+      <button onclick="toggleDarkMode()" id="themeToggle">
+        <!-- Default: Moon icon -->
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>
+        </svg>
+      </button>
     </div>
   </div>
 
@@ -184,13 +195,20 @@
       const body = document.body;
       const calc = document.getElementById('calculator');
       const display = document.getElementById('display');
-      const toggleBtn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
 
       body.classList.toggle('dark');
       calc.classList.toggle('dark');
       display.classList.toggle('dark');
 
-      toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+      // Change icon SVG path
+      if (body.classList.contains('dark')) {
+        // Sun icon
+        icon.innerHTML = '<path d="M12 4.5a1 1 0 011 1V7a1 1 0 01-2 0V5.5a1 1 0 011-1zm0 12a1 1 0 011 1v1.5a1 1 0 01-2 0V17.5a1 1 0 011-1zm7.07-7.07a1 1 0 010 1.41l-1.06 1.06a1 1 0 11-1.41-1.41l1.06-1.06a1 1 0 011.41 0zM5.93 5.93a1 1 0 010 1.41L4.87 8.4a1 1 0 11-1.41-1.41L4.52 5.93a1 1 0 011.41 0zM18.5 11a1 1 0 011 1h1.5a1 1 0 010 2H19.5a1 1 0 01-1-1 1 1 0 011-1zm-13 0a1 1 0 011 1 1 1 0 01-1 1H4a1 1 0 010-2h1.5zm10.18 4.9a1 1 0 011.41 0l1.06 1.06a1 1 0 01-1.41 1.41l-1.06-1.06a1 1 0 010-1.41zM5.93 18.07a1 1 0 011.41 0l1.06 1.06a1 1 0 11-1.41 1.41L5.93 19.48a1 1 0 010-1.41zM12 8a4 4 0 100 8 4 4 0 000-8z"/>';
+      } else {
+        // Moon icon
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"/>';
+      }
     }
   </script>
 </body>
