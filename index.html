@@ -115,7 +115,7 @@
     }
   </style>
 </head>
-<body onclick="toggleDarkMode()">
+<body>
   <div class="calculator-wrapper" id="calculatorWrapper">
     <div class="calculator" id="calculator">
       <div class="main-calc">
@@ -202,6 +202,14 @@
       const scale = Math.min(scaleX, scaleY);
       wrapper.style.transform = `scale(${scale})`;
     }
+
+    // Toggle dark mode on body click except buttons or display
+    document.body.addEventListener('click', function (e) {
+      const calculator = document.getElementById('calculator');
+      if (!calculator.contains(e.target)) {
+        toggleDarkMode();
+      }
+    });
 
     window.addEventListener('resize', scaleCalculator);
     window.addEventListener('DOMContentLoaded', () => {
