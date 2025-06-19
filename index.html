@@ -38,20 +38,6 @@
       position: relative;
     }
 
-    .dot-toggle {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #333;
-      border: 1px solid #aaa;
-      cursor: pointer;
-      z-index: 20;
-      transition: all 0.3s;
-    }
-
     .main-calc {
       display: flex;
       flex-direction: column;
@@ -67,7 +53,6 @@
       background: rgba(0, 0, 0, 0.05);
       user-select: none;
       min-width: 260px;
-      position: relative; /* needed for dot-toggle absolute positioning */
     }
 
     .buttons {
@@ -113,11 +98,6 @@
       border-color: #444;
     }
 
-    body.dark .dot-toggle {
-      background: #888;
-      border-color: #444;
-    }
-
     body.dark .display {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
@@ -135,14 +115,11 @@
     }
   </style>
 </head>
-<body>
+<body onclick="toggleDarkMode()">
   <div class="calculator-wrapper" id="calculatorWrapper">
     <div class="calculator" id="calculator">
       <div class="main-calc">
-        <div id="display" class="display">
-          0
-          <div class="dot-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode"></div>
-        </div>
+        <div id="display" class="display">0</div>
         <div class="buttons">
           <button onclick="clearDisplay()">AC</button>
           <button onclick="backspace()">⌫</button>
