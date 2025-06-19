@@ -17,13 +17,14 @@
       font-family: 'Segoe UI', sans-serif;
       background: transparent;
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
     .calculator-wrapper {
+      transform-origin: center center;
       position: relative;
-      transform-origin: top left;
     }
 
     .calculator {
@@ -102,7 +103,6 @@
       border-radius: 50px;
     }
 
-    /* Dark mode support */
     body.dark .calculator {
       background: rgba(0, 0, 0, 0.85);
       color: #fff;
@@ -205,16 +205,19 @@
 
     function scaleCalculator() {
       const wrapper = document.getElementById('calculatorWrapper');
-      const parent = document.body;
+      const calculator = wrapper.querySelector('.calculator');
 
-      const w = parent.clientWidth;
-      const h = parent.clientHeight;
+      const parentWidth = window.innerWidth;
+      const parentHeight = window.innerHeight;
 
-      // Approx base size (adjust these if layout changes)
-      const baseWidth = 320;  // Width of calculator
-      const baseHeight = 460; // Height of calculator including display and buttons
+      const calcWidth = calculator.offsetWidth;
+      const calcHeight = calculator.offsetHeight;
 
-      const scale = Math.min(w / baseWidth, h / baseHeight);
+      const scaleX = parentWidth / calcWidth;
+      const scaleY = parentHeight / calcHeight;
+
+      const scale = Math.min(scaleX, scaleY);
+
       wrapper.style.transform = `scale(${scale})`;
     }
 
@@ -224,7 +227,7 @@
       if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
       }
-      scaleCalculator();
+      setTimeout(scaleCalculator, 10); // Ensure layout is rendered before measuring
     });
   </script>
 </body>
