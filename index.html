@@ -210,10 +210,12 @@
       }
       setTimeout(scaleCalculator, 10);
 
-      // Toggle mode only when padding area of calculator is clicked
+      // Toggle dark mode on calculator click (excluding buttons and display)
       const calculator = document.getElementById('calculator');
       calculator.addEventListener('click', (event) => {
-        if (event.target === calculator) {
+        const isButton = event.target.closest('button');
+        const isDisplay = event.target.id === 'display' || event.target.closest('#display');
+        if (!isButton && !isDisplay) {
           toggleDarkMode();
         }
       });
