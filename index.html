@@ -21,19 +21,21 @@
       align-items: flex-start;
     }
 
-    .calculator {
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #444;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.85);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .calculator-wrapper {
       transform-origin: top left;
+      transform: scale(0.85);
       position: relative;
-      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .calculator {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #000;
+      padding: 20px;
+      gap: 20px;
+      position: relative;
     }
 
     .dot-toggle {
@@ -43,11 +45,17 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #888;
-      border: 1px solid #444;
+      background: #333;
+      border: 1px solid #aaa;
       cursor: pointer;
-      z-index: 2;
+      z-index: 10;
       transition: all 0.3s;
+    }
+
+    .main-calc {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .display {
@@ -55,26 +63,27 @@
       text-align: right;
       padding: 15px 20px;
       border-radius: 6px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.05);
       user-select: none;
       min-width: 260px;
     }
 
     .buttons {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(4, 60px);
+      grid-template-rows: repeat(5, 60px);
+      gap: 12px;
     }
 
     .buttons button {
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      width: 60px;
+      height: 60px;
       font-size: 1.2em;
       font-weight: 600;
       border-radius: 50%;
-      border: 1px solid #888;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      border: 1px solid #ccc;
+      background: rgba(0, 0, 0, 0.05);
+      color: #000;
       cursor: pointer;
       transition: all 0.2s;
       display: flex;
@@ -85,87 +94,96 @@
     }
 
     .buttons button:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    /* Light Mode */
-    body.light .calculator {
-      background: rgba(255, 255, 255, 0.95);
-      border-color: #ccc;
-      color: #000;
-    }
-
-    body.light .dot-toggle {
-      background: #333;
-      border-color: #aaa;
-    }
-
-    body.light .display {
-      background: rgba(0, 0, 0, 0.05);
-      color: #000;
-    }
-
-    body.light .buttons button {
-      background: rgba(0, 0, 0, 0.05);
-      color: #000;
-      border-color: #ccc;
-    }
-
-    body.light .buttons button:hover {
       background: #000;
       color: #fff;
     }
 
-    /* Responsive scaling */
-    @media (max-width: 600px) {
-      .calculator {
-        transform: scale(0.85);
-      }
+    .buttons .plus {
+      grid-column: 4;
+      grid-row: span 2;
+      height: 132px;
+      border-radius: 50px;
     }
 
-    @media (max-width: 450px) {
-      .calculator {
+    /* Dark mode support */
+    body.dark .calculator {
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      border-color: #444;
+    }
+
+    body.dark .dot-toggle {
+      background: #888;
+      border-color: #444;
+    }
+
+    body.dark .display {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    body.dark .buttons button {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: #888;
+    }
+
+    body.dark .buttons button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      .calculator-wrapper {
         transform: scale(0.75);
       }
     }
 
-    @media (max-width: 350px) {
-      .calculator {
+    @media (max-width: 450px) {
+      .calculator-wrapper {
         transform: scale(0.65);
+      }
+    }
+
+    @media (max-width: 350px) {
+      .calculator-wrapper {
+        transform: scale(0.55);
       }
     }
   </style>
 </head>
 <body>
-  <div id="calculator" class="calculator">
+  <div class="calculator-wrapper">
     <div class="dot-toggle" onclick="toggleDarkMode()"></div>
-    <div id="display" class="display">0</div>
-    <div class="buttons">
-      <button onclick="clearDisplay()">AC</button>
-      <button onclick="backspace()">⌫</button>
-      <button onclick="appendValue('%')">%</button>
-      <button onclick="appendValue('/')">÷</button>
+    <div class="calculator">
+      <div class="main-calc">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+          <button onclick="clearDisplay()">AC</button>
+          <button onclick="backspace()">⌫</button>
+          <button onclick="appendValue('%')">%</button>
+          <button onclick="appendValue('/')">÷</button>
 
-      <button onclick="appendValue('7')">7</button>
-      <button onclick="appendValue('8')">8</button>
-      <button onclick="appendValue('9')">9</button>
-      <button onclick="appendValue('*')">×</button>
+          <button onclick="appendValue('7')">7</button>
+          <button onclick="appendValue('8')">8</button>
+          <button onclick="appendValue('9')">9</button>
+          <button onclick="appendValue('*')">×</button>
 
-      <button onclick="appendValue('4')">4</button>
-      <button onclick="appendValue('5')">5</button>
-      <button onclick="appendValue('6')">6</button>
-      <button onclick="appendValue('-')">−</button>
+          <button onclick="appendValue('4')">4</button>
+          <button onclick="appendValue('5')">5</button>
+          <button onclick="appendValue('6')">6</button>
+          <button onclick="appendValue('-')">−</button>
 
-      <button onclick="appendValue('1')">1</button>
-      <button onclick="appendValue('2')">2</button>
-      <button onclick="appendValue('3')">3</button>
-      <button onclick="appendValue('+')">+</button>
+          <button onclick="appendValue('1')">1</button>
+          <button onclick="appendValue('2')">2</button>
+          <button onclick="appendValue('3')">3</button>
+          <button class="plus" onclick="appendValue('+')">+</button>
 
-      <button onclick="appendValue('0')">0</button>
-      <button onclick="appendValue('.')">.</button>
-      <button onclick="calculate()">=</button>
-      <button onclick="appendValue('**')">^</button>
+          <button onclick="appendValue('0')">0</button>
+          <button onclick="appendValue('.')">.</button>
+          <button onclick="calculate()">=</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -196,16 +214,22 @@
 
     function backspace() {
       const display = document.getElementById('display');
-      if (display.textContent.length > 1) {
-        display.textContent = display.textContent.slice(0, -1);
-      } else {
-        display.textContent = '0';
-      }
+      display.textContent = display.textContent.length > 1
+        ? display.textContent.slice(0, -1)
+        : '0';
     }
 
     function toggleDarkMode() {
-      document.body.classList.toggle('light');
+      document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark') ? 'true' : 'false');
     }
+
+    // Restore mode from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+      }
+    });
   </script>
 </body>
 </html>
