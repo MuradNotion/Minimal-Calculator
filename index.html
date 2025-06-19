@@ -14,15 +14,17 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      font-family: 'Segoe UI', sans-serif;
       background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
     }
 
     .calculator-wrapper {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transform-origin: center center;
       position: relative;
     }
@@ -38,8 +40,9 @@
 
     .dot-toggle {
       position: absolute;
-      bottom: 5px;
-      left: 5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 13px;
       height: 13px;
       border-radius: 50%;
@@ -134,7 +137,7 @@
 <body>
   <div class="calculator-wrapper" id="calculatorWrapper">
     <div class="dot-toggle" onclick="toggleDarkMode()"></div>
-    <div class="calculator">
+    <div class="calculator" id="calculator">
       <div class="main-calc">
         <div id="display" class="display">0</div>
         <div class="buttons">
@@ -205,7 +208,7 @@
 
     function scaleCalculator() {
       const wrapper = document.getElementById('calculatorWrapper');
-      const calculator = wrapper.querySelector('.calculator');
+      const calculator = document.getElementById('calculator');
 
       const parentWidth = window.innerWidth;
       const parentHeight = window.innerHeight;
@@ -217,17 +220,15 @@
       const scaleY = parentHeight / calcHeight;
 
       const scale = Math.min(scaleX, scaleY);
-
       wrapper.style.transform = `scale(${scale})`;
     }
 
     window.addEventListener('resize', scaleCalculator);
-
     window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
       }
-      setTimeout(scaleCalculator, 10); // Ensure layout is rendered before measuring
+      setTimeout(scaleCalculator, 10);
     });
   </script>
 </body>
